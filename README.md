@@ -54,7 +54,10 @@ symmetry correspondences in the canonical coordinate system. Finally, a two-stag
     ln -s path_to_unzipped_Occlusion_Linemod dataset/linemod/Occlusion_Linemod
     ```
 + Truncation LineMOD: Download our regenerated Truncation LineMOD dataset from 
-+ BOP LineMOD: Download the BOP 
++ BOP LineMOD: Download the BOP-version LineMOD dataset from [here](https://bop.felk.cvut.cz/datasets/) mainly including lm_train_pbr.zip, lm_models.zip and lmo_test_all.zip. Unzip them and link to `datasets/lmo/`:
     ```shell
+    ln -s path_to_unzipped_train_pbr dataset/lmo/train_pbr
+    ln -s path_to_unzipped_models dataset/lmo/models_eval
+    ln -s path_to_unzipped_lmo_test dataset/lmo/test
     ```
-    Generate sym_cor labels with [label_sym.py]()
+    Generate sym_cor labels with [label_sym.py]() for all training and testing images.
