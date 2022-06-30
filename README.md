@@ -48,7 +48,7 @@ symmetry correspondences in the canonical coordinate system. Finally, a two-stag
     ln -s path_to_unzipped_Linemod_preprocessed dataset/linemod/
     ```
   Generate rendered and fused data following [raster_triangle](https://github.com/ethnhe/raster_triangle).
-  <br />Generate sym_cor labels with [label_real.py](https://drive.google.com/drive/folders/1xF4L5J1gHOIPMQHbh_pxqM6WJZccPDR5), [label_render.py](https://drive.google.com/drive/folders/1xF4L5J1gHOIPMQHbh_pxqM6WJZccPDR5) and [label_fuse.py](https://drive.google.com/drive/folders/1xF4L5J1gHOIPMQHbh_pxqM6WJZccPDR5) for each object.
+  <br />Download [symmetries](https://drive.google.com/drive/folders/1JNW5yod33l60p05USFugABmYDTX2zYIB) and generate sym_cor labels with [label_real.py](https://drive.google.com/drive/folders/1xF4L5J1gHOIPMQHbh_pxqM6WJZccPDR5), [label_render.py](https://drive.google.com/drive/folders/1xF4L5J1gHOIPMQHbh_pxqM6WJZccPDR5) and [label_fuse.py](https://drive.google.com/drive/folders/1xF4L5J1gHOIPMQHbh_pxqM6WJZccPDR5) for each object.
 + Occlusion LineMOD: Download the Occlusion LineMOD from [Google Drive](https://drive.google.com/file/d/1PItmDj7Go0OBnC1Lkvagz3RRB9qdJUIG/view?usp=sharing) or [Tencent Weiyun](https://share.weiyun.com/50i7KTb). Unzip it and link the unzipped `OcclusionChallengeICCV2015` to `datasets/linemod/Occusion_Linemod`:
     ```shell
     ln -s path_to_unzipped_Occlusion_Linemod dataset/linemod/Occlusion_Linemod
@@ -60,7 +60,7 @@ symmetry correspondences in the canonical coordinate system. Finally, a two-stag
     ln -s path_to_unzipped_models dataset/lmo/models_eval
     ln -s path_to_unzipped_lmo_test dataset/lmo/test
     ```
-    Generate sym_cor labels with [label_sym.py](https://drive.google.com/drive/folders/1xF4L5J1gHOIPMQHbh_pxqM6WJZccPDR5) for all training and testing images.
+    Download [symmetries](https://drive.google.com/drive/folders/1BypPQWIz_LXSHizhefQNbK_D1af9NkQV) and generate sym_cor labels with [label_sym.py](https://drive.google.com/drive/folders/1xF4L5J1gHOIPMQHbh_pxqM6WJZccPDR5) for all training and testing images.
 ## Training and evaluating
 ### Training on the LineMOD dataset
 + Train the model for the target object. You should change variable **cls** to **\'ape\'** in script *train_lm.sh* and execute it in command line:
