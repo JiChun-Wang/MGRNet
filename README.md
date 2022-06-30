@@ -60,7 +60,7 @@ symmetry correspondences in the canonical coordinate system. Finally, a two-stag
     ln -s path_to_unzipped_models dataset/lmo/models_eval
     ln -s path_to_unzipped_lmo_test dataset/lmo/test
     ```
-    Generate sym_cor labels with [label_sym.py]() for all training and testing images.
+    Generate sym_cor labels with [label_sym.py](https://drive.google.com/drive/folders/1xF4L5J1gHOIPMQHbh_pxqM6WJZccPDR5) for all training and testing images.
 ## Training and evaluating
 ### Training on the LineMOD dataset
 + Train the model for the target object. You should change variable **cls** to **\'ape\'** in script *train_lm.sh* and execute it in command line:
