@@ -63,10 +63,25 @@ symmetry correspondences in the canonical coordinate system. Finally, a two-stag
     Generate sym_cor labels with [label_sym.py]() for all training and testing images.
 ## Training and evaluating
 ### Training on the LineMOD dataset
-+ Train the model for the target object. Take object ape for example, you should change variable **cls** to **\'ape\'** and execute the following script in command line:
++ Train the model for the target object. You should change variable **cls** to **\'ape\'** in script *train_lm.sh* and execute it in command line:
     ```shell
     bash train_lm.sh
     ```
 ### Evaluating on the Occlusion and Truncation LineMOD datasets
++ Before starting evaluation on certain object, you should change **cls** and **tst_mdl** in script *test_lm.sh* and execute it in command line:
+    ```shell
+    bash test_lm.sh
+    ```
+    The varible **tst_mdl** should be a path of pretrained model, which is stored in `train_log/linemod/checkpoints/{cls}`.
++ **Pretrained model**: We provide our pre-trained models for each object on , [link]().
 ### Training on the BOP LineMOD dataset
+Because every training image of BOP LineMOD dataset contains label information of each object instance, we only need train one model for all of the 15 objects. Execute the following command for training:
+    ```shell
+    bash train_boplm.sh
+    ```
 ### Evaluating on the BOP LM-O dataset
++ Start evaluating by:
+    ```shell
+    bash test_boplm.sh
+    ```
++ **Pretrained model**: We provide our pre-trained models on , [link](). 
