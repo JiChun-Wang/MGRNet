@@ -73,7 +73,7 @@ symmetry correspondences in the canonical coordinate system. Finally, a two-stag
     bash test_lm.sh
     ```
     The varible **tst_mdl** should be a path of pretrained model, which is stored in `train_log/linemod/checkpoints/{cls}`.
-+ **Pretrained model**: We provide our pre-trained models for each object on , [link]().
++ **Pretrained model**: We provide our pre-trained models for each object on , [link](https://drive.google.com/drive/folders/1JNW5yod33l60p05USFugABmYDTX2zYIB).
 ### Training on the BOP LineMOD dataset
 Because every training image of BOP LineMOD dataset contains label information of each object instance, we only need train one model for all of the 15 objects. Execute the following command for training:
     ```shell
@@ -84,4 +84,4 @@ Because every training image of BOP LineMOD dataset contains label information o
     ```shell
     bash test_boplm.sh
     ```
-+ **Pretrained model**: We provide our pre-trained models on , [link](). 
++ **Pretrained model**: We provide our pre-trained models on , [link](https://drive.google.com/drive/folders/1BypPQWIz_LXSHizhefQNbK_D1af9NkQV). 
