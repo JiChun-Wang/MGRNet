@@ -25,12 +25,12 @@ pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp
 cd ..
 ```
 + Install [normalSpeed](https://github.com/hfutcgncas/normalSpeed), a fast and light-weight normal map estimator:
-```shell
-git clone https://github.com/hfutcgncas/normalSpeed.git
-cd normalSpeed/normalSpeed
-python setup.py install --user
-cd ..
-```
+    ```shell
+    git clone https://github.com/hfutcgncas/normalSpeed.git
+    cd normalSpeed/normalSpeed
+    python setup.py install --user
+    cd ..
+    ```
 + Install tkinter through `sudo apt get install python3-tk `
 + Compile [RandLA-Net](https://github.com/qiqihaer/RandLA-Net-pytorch) operators:
 ```shell
@@ -43,3 +43,4 @@ cd lib/regressor
 make
 ```
 ## Dataset set-up
+s
