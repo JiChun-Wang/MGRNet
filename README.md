@@ -47,7 +47,7 @@ symmetry correspondences in the canonical coordinate system. Finally, a two-stag
     ```shell
     ln -s path_to_unzipped_Linemod_preprocessed dataset/linemod/
     ```
-  Generate rendered and fused data following [raster_triangle](https://github.com/ethnhe/raster_triangle)
+  Generate rendered and fused data following [raster_triangle](https://github.com/ethnhe/raster_triangle).
   Generate sym_cor labels with [label_real.py](), [label_render.py]() and [label_fuse.py]() for each object.
 + Occlusion LineMOD: Download the Occlusion LineMOD from [Google Drive](https://drive.google.com/file/d/1PItmDj7Go0OBnC1Lkvagz3RRB9qdJUIG/view?usp=sharing) or [Tencent Weiyun](https://share.weiyun.com/50i7KTb). Unzip it and link the unzipped `OcclusionChallengeICCV2015` to `datasets/linemod/Occusion_Linemod`:
     ```shell
