@@ -53,7 +53,7 @@ symmetry correspondences in the canonical coordinate system. Finally, a two-stag
     ```shell
     ln -s path_to_unzipped_Occlusion_Linemod dataset/linemod/Occlusion_Linemod
     ```
-+ Truncation LineMOD: Download our regenerated Truncation LineMOD dataset from [Google Drive](https://drive.google.com/drive/folders/1BypPQWIz_LXSHizhefQNbK_D1af9NkQV)
++ Truncation LineMOD: Download our regenerated Truncation LineMOD dataset from [Google Drive](https://drive.google.com/drive/folders/1JNW5yod33l60p05USFugABmYDTX2zYIB).
 + BOP LineMOD: Download the BOP-version LineMOD dataset from [here](https://bop.felk.cvut.cz/datasets/) mainly including lm_train_pbr.zip, lm_models.zip and lmo_test_all.zip. Unzip them and link to `datasets/lmo/`:
     ```shell
     ln -s path_to_unzipped_train_pbr dataset/lmo/train_pbr
