@@ -5,3 +5,4 @@ Deep learning-based 6D object pose estimation methods from a single RGBD image h
 pose estimation method based on multiple geometry representations. Specifically, we introduce a network to fuse the appearance and geometry features
 extracted from input color and depth images. Then, we utilize these per-point fusion features to estimate keypoint offsets, edge vectors, and dense
 symmetry correspondences in the canonical coordinate system. Finally, a two-stage pose regression module is applied to compute the 6D pose of an object. Relative to the unitary 3D keypoint-based strategy, such combinationof multiple geometry representations provides sufficient and diverse information, especially for occluded or truncated scenes.
+![Pipeline](https://github.com/JiChun-Wang/MGRNet/blob/main/assert/pipeline.png)
