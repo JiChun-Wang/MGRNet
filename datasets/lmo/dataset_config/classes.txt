@@ -1,0 +1,15 @@
+ape
+benchvise
+bowl
+cam
+can
+cat
+cup
+driller
+duck
+eggbox
+glue
+holepuncher
+iron
+lamp
+phone
