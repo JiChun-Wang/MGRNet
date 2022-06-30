@@ -61,3 +61,8 @@ symmetry correspondences in the canonical coordinate system. Finally, a two-stag
     ln -s path_to_unzipped_lmo_test dataset/lmo/test
     ```
     Generate sym_cor labels with [label_sym.py]() for all training and testing images.
+## Training and evaluating
+### Training on the LineMOD dataset
+### Evaluating on the Occlusion and Truncation LineMOD dataset
+### Training on the BOP LineMOD dataset
+### Evaluating on the BOP LM-O dataset
