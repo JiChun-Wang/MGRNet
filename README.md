@@ -8,22 +8,22 @@ symmetry correspondences in the canonical coordinate system. Finally, a two-stag
 ![Pipeline](https://github.com/JiChun-Wang/MGRNet/blob/main/assert/pipeline.png)
 ## Installation
 + Set up the python environment:
-```shell
-conda create -n mgrnet python=3.7
-conda activate mgrnet
+    ```shell
+    conda create -n mgrnet python=3.7
+    conda activate mgrnet
 
-# install torch 1.8.1 built from cuda 11.1
-pip install torch==1.8.1+cu111 torchvision==0.9.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
-    
-pip install -r requirement.txt
-```
+    # install torch 1.8.1 built from cuda 11.1
+    pip install torch==1.8.1+cu111 torchvision==0.9.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
+
+    pip install -r requirement.txt
+    ```
 + Install [apex](https://github.com/NVIDIA/apex):
-```shell    
-git clone https://github.com/NVIDIA/apex
-export TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.5"  # set the target architecture manually, suggested in issue https://github.com/NVIDIA/apex/issues/605#issuecomment-554453001
-pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
-cd ..
-```
+    ```shell    
+    git clone https://github.com/NVIDIA/apex
+    export TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.5"  # set the target architecture manually, suggested in issue https://github.com/NVIDIA/apex/issues/605#issuecomment-554453001
+    pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
+    cd ..
+    ```
 + Install [normalSpeed](https://github.com/hfutcgncas/normalSpeed), a fast and light-weight normal map estimator:
     ```shell
     git clone https://github.com/hfutcgncas/normalSpeed.git
@@ -33,14 +33,14 @@ cd ..
     ```
 + Install tkinter through `sudo apt get install python3-tk `
 + Compile [RandLA-Net](https://github.com/qiqihaer/RandLA-Net-pytorch) operators:
-```shell
-cd models/RandLA/
-sh compile_op.sh
-```
+    ```shell
+    cd models/RandLA/
+    sh compile_op.sh
+    ```
 + Compile the pose regressor
-```shell
-cd lib/regressor
-make
-```
+    ```shell
+    cd lib/regressor
+    make
+    ```
 ## Dataset set-up
 s
