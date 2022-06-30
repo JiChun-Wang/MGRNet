@@ -43,4 +43,18 @@ symmetry correspondences in the canonical coordinate system. Finally, a two-stag
     make
     ```
 ## Dataset set-up
-s
++ LineMOD: Download the preprocessed LineMOD dataset from [onedrive link](https://hkustconnect-my.sharepoint.com/:u:/g/personal/yhebk_connect_ust_hk/ETW6iYHDbo1OsIbNJbyNBkABF7uJsuerB6c0pAiiIv6AHw?e=eXM1UE) or [google drive link](https://drive.google.com/drive/folders/19ivHpaKm9dOrr12fzC8IDFczWRPFxho7). Unzip it and link the unzipped `Linemod_preprocessed/` to `datasets/linemod/Linemod_preprocessed`:
+    ```shell
+    ln -s path_to_unzipped_Linemod_preprocessed dataset/linemod/
+    ```
+  Generate rendered and fused data following [raster_triangle](https://github.com/ethnhe/raster_triangle)
+  Generate sym_cor labels with [label_real.py](), [label_render.py]() and [label_fuse.py]() for each object.
++ Occlusion LineMOD: Download the Occlusion LineMOD from [Google Drive](https://drive.google.com/file/d/1PItmDj7Go0OBnC1Lkvagz3RRB9qdJUIG/view?usp=sharing) or [Tencent Weiyun](https://share.weiyun.com/50i7KTb). Unzip it and link the unzipped `OcclusionChallengeICCV2015` to `datasets/linemod/Occusion_Linemod`:
+    ```shell
+    ln -s path_to_unzipped_Occlusion_Linemod dataset/linemod/Occlusion_Linemod
+    ```
++ Truncation LineMOD: Download our regenerated Truncation LineMOD dataset from 
++ BOP LineMOD: Download the BOP 
+    ```shell
+    ```
+    Generate sym_cor labels with [label_sym.py]()
