@@ -63,6 +63,6 @@ symmetry correspondences in the canonical coordinate system. Finally, a two-stag
     Generate sym_cor labels with [label_sym.py]() for all training and testing images.
 ## Training and evaluating
 ### Training on the LineMOD dataset
-### Evaluating on the Occlusion and Truncation LineMOD dataset
+### Evaluating on the Occlusion and Truncation LineMOD datasets
 ### Training on the BOP LineMOD dataset
 ### Evaluating on the BOP LM-O dataset
