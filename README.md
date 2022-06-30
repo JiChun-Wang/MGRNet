@@ -63,7 +63,7 @@ symmetry correspondences in the canonical coordinate system. Finally, a two-stag
     Generate sym_cor labels with [label_sym.py]() for all training and testing images.
 ## Training and evaluating
 ### Training on the LineMOD dataset
-+ Train the model for the target object. Take object ape for example, you should change variable $cls$ to 'ape' and execute the following script in command line:
++ Train the model for the target object. Take object ape for example, you should change variable **cls** to **\'ape\'** and execute the following script in command line:
     ```shell
     bash train_lm.sh
     ```
