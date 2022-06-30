@@ -5,3 +5,31 @@ Deep learning-based 6D object pose estimation methods from a single RGBD image h
 pose estimation method based on multiple geometry representations. Specifically, we introduce a network to fuse the appearance and geometry features
 extracted from input color and depth images. Then, we utilize these per-point fusion features to estimate keypoint offsets, edge vectors, and dense
 symmetry correspondences in the canonical coordinate system. Finally, a two-stage pose regression module is applied to compute the 6D pose of an object. Relative to the unitary 3D keypoint-based strategy, such combinationof multiple geometry representations provides sufficient and diverse information, especially for occluded or truncated scenes.
+![Pipeline](https://github.com/JiChun-Wang/MGRNet/blob/main/assert/pipeline.png)
+## Installation
++ Set up the python environment:
+    conda create -n mgrnet python=3.7
+    conda activate mgrnet
+    
+    # install torch 1.8.1 built from cuda 11.0
+    pip install torch==1.8.1+cu111 torchvision==0.9.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
+    
+    pip install -r requirement.txt
++ Install [apex](https://github.com/NVIDIA/apex):
+    git clone https://github.com/NVIDIA/apex
+    export TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.5"  # set the target architecture manually, suggested in issue https://github.com/NVIDIA/apex/issues/605#issuecomment-554453001
+    pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
+    cd ..
++ Install normalSpeed, a fast and light-weight normal map estimator:
+    git clone https://github.com/hfutcgncas/normalSpeed.git
+    cd normalSpeed/normalSpeed
+    python setup.py install --user
+    cd ..
++ Install tkinter through \`sudo apt get install python3-tk
++ Compile RandLA-Net operators:
+    cd models/RandLA/
+    sh compile_op.sh
++ Compile the pose regressor
+    cd lib/regressor
+    make
+## Dataset set-up
