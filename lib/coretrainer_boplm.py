@@ -764,12 +764,6 @@ class Trainer(object):
                 print("{} parameter search complete. ".format(cls_type))
 
             # prediction
-            csv_file = open(os.path.join(self.config.log_eval_dir, 'test_set_pose.csv'), 'w')
-            fieldnames = ['scene_id', 'im_id', 'obj_id', 'score', 'R', 't', 'time']
-            csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-            csv_writer.writeheader()
-            rst_collect = []
-
             n_cls = self.config.n_classes
             cls_pose_pred = [list() for i in range(n_cls)]
             cls_pose_gt = [list() for i in range(n_cls)]
@@ -826,17 +820,6 @@ class Trainer(object):
                             pose = np.concatenate([R_pred, t_pred], axis=1)
                             pred_pose_lst.append(pose)
 
-                        # rst = {
-                        #     'scene_id': int(scene_id_),
-                        #     'im_id': int(image_id_),
-                        #     'R': ' '.join(str(i) for i in R_pred.reshape(-1)),
-                        #     't': ' '.join(str(i) for i in t_pred.reshape(-1)*1000),
-                        #     'score': float(1.),
-                        #     'obj_id': int(self.config.boplm_cls_lst[cls_id-1]),
-                        #     'time': float(0.)
-                        # }
-                        # rst_collect.append(rst)
-
                     for icls, cls_id in enumerate(gt_cls_ids):
                         if cls_id == 0:
                             break
@@ -844,28 +827,11 @@ class Trainer(object):
                         cls_pose_gt[cls_id].append(RT[icls].cpu().numpy())
                         if len(cls_idx) == 0:
                             cls_pose_pred[cls_id].append(np.identity(4)[:3, :])
-                            R_pred = np.identity(3)
-                            t_pred = np.zeros(3,)
                         else:
                             cls_pose_pred[cls_id].append(pred_pose_lst[cls_idx[0]])
                             pose = pred_pose_lst[cls_idx[0]]
-                            R_pred = pose[:3, :3]
-                            t_pred = pose[:3, 3]
-                        rst = {
-                            'scene_id': int(scene_id_),
-                            'im_id': int(image_id_),
-                            'R': ' '.join(str(i) for i in R_pred.reshape(-1)),
-                            't': ' '.join(str(i) for i in t_pred.reshape(-1) * 1000),
-                            'score': float(1.),
-                            'obj_id': int(cls_id),
-                            'time': float(0.)
-                        }
-                        rst_collect.append(rst)
-            # np.save(os.path.join(self.config.log_eval_dir, 'test_set_pose.npy'), {'pred': cls_pose_pred, 'gt': cls_pose_gt})
-            # print('saved')
-            for item in rst_collect:
-                csv_writer.writerow(item)
-            csv_file.close()
+            np.save(os.path.join(self.config.log_eval_dir, 'test_set_pose.npy'), {'pred': cls_pose_pred, 'gt': cls_pose_gt})
+            print('saved')
             for cls_type in self.config.boplm_cls_lst:
                 regressor.delete_container2(pi_paras[cls_type], pr_paras[cls_type])
             regressor.delete_container3(predictions)
@@ -912,13 +878,3 @@ class Trainer(object):
                 # print('{} add_auc: {}'.format(self.config.boplm_cls_lst[i-1], add_auc))
                 # print('{} add_s_auc: {}'.format(self.config.boplm_cls_lst[i-1], add_s_auc))
                 # print('{} adds_auc: {}'.format(self.config.boplm_cls_lst[i-1], adds_auc))
-
-    def compute_pose_score(self):
-        record = np.load(os.path.join(self.config.log_eval_dir, 'test_set_pose.npy'), allow_pickle=True).item()
-        obj_id = self.config.lm_obj_dict[self.args.cls]
-        diameter = self.config.lm_r_lst[obj_id]['diameter'] / 1000.0
-        R_err, t_err = compute_pose_error(diameter,
-                                          (record['R_gt'], record['t_gt']),
-                                          (record['R_pred'], record['t_pred']))
-        if self.args.local_rank == 0:
-            print(self.args.cls + 'prediction rotation error is: {} translation error is : {}'.format(R_err, t_err))
