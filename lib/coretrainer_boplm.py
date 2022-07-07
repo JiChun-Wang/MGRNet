@@ -114,7 +114,7 @@ def checkpoint_state(model=None, optimizer=None, best_prec=None, epoch=None, it=
 
 def save_checkpoint(
         state, is_best, filename="checkpoint", bestname="model_best",
-        bestname_pure='ffb6d_best'
+        bestname_pure='mgrnet_best'
 ):
     filename = "{}.pth.tar".format(filename)
     torch.save(state, filename)
@@ -776,7 +776,7 @@ class Trainer(object):
             for i_batch, batch in enumerate(test_loader):
                 base_idx = self.config.val_mini_batch_size * i_batch
                 cu_dt, end_points = self.model_fn(batch, is_eval=True, is_test=True)
-                _, cls_rgbds = torch.max(end_points['pred_rgbd_segs'], 1)
+                cls_rgbds = cu_dt['labels']
                 pclds = cu_dt['cld_rgb_nrm'][:, :3, :].permute(0, 2, 1).contiguous()
                 ctr_ofs_pred = end_points['pred_ctr_ofs']
                 kps_ofs_pred = end_points['pred_kp_ofs']
