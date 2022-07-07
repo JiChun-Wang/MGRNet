@@ -8,28 +8,80 @@ symmetry correspondences in the canonical coordinate system. Finally, a two-stag
 ![Pipeline](https://github.com/JiChun-Wang/MGRNet/blob/main/assert/pipeline.png)
 ## Installation
 + Set up the python environment:
+    ```shell
     conda create -n mgrnet python=3.7
     conda activate mgrnet
-    
-    # install torch 1.8.1 built from cuda 11.0
+
+    # install torch 1.8.1 built from cuda 11.1
     pip install torch==1.8.1+cu111 torchvision==0.9.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
-    
+
     pip install -r requirement.txt
+    ```
 + Install [apex](https://github.com/NVIDIA/apex):
+    ```shell    
     git clone https://github.com/NVIDIA/apex
     export TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.5"  # set the target architecture manually, suggested in issue https://github.com/NVIDIA/apex/issues/605#issuecomment-554453001
     pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
     cd ..
-+ Install normalSpeed, a fast and light-weight normal map estimator:
+    ```
++ Install [normalSpeed](https://github.com/hfutcgncas/normalSpeed), a fast and light-weight normal map estimator:
+    ```shell
     git clone https://github.com/hfutcgncas/normalSpeed.git
     cd normalSpeed/normalSpeed
     python setup.py install --user
     cd ..
-+ Install tkinter through \`sudo apt get install python3-tk
-+ Compile RandLA-Net operators:
+    ```
++ Install tkinter through `sudo apt get install python3-tk `
++ Compile [RandLA-Net](https://github.com/qiqihaer/RandLA-Net-pytorch) operators:
+    ```shell
     cd models/RandLA/
     sh compile_op.sh
+    ```
 + Compile the pose regressor
+    ```shell
     cd lib/regressor
     make
+    ```
 ## Dataset set-up
++ LineMOD: Download the preprocessed LineMOD dataset from [onedrive link](https://hkustconnect-my.sharepoint.com/:u:/g/personal/yhebk_connect_ust_hk/ETW6iYHDbo1OsIbNJbyNBkABF7uJsuerB6c0pAiiIv6AHw?e=eXM1UE) or [google drive link](https://drive.google.com/drive/folders/19ivHpaKm9dOrr12fzC8IDFczWRPFxho7). Unzip it and link the unzipped `Linemod_preprocessed/` to `datasets/linemod/Linemod_preprocessed`:
+    ```shell
+    ln -s path_to_unzipped_Linemod_preprocessed dataset/linemod/
+    ```
+  Generate rendered and fused data following [raster_triangle](https://github.com/ethnhe/raster_triangle).
+  <br />Download [symmetries](https://drive.google.com/drive/folders/1JNW5yod33l60p05USFugABmYDTX2zYIB) and generate sym_cor labels with [label_real.py](https://drive.google.com/drive/folders/1xF4L5J1gHOIPMQHbh_pxqM6WJZccPDR5), [label_render.py](https://drive.google.com/drive/folders/1xF4L5J1gHOIPMQHbh_pxqM6WJZccPDR5) and [label_fuse.py](https://drive.google.com/drive/folders/1xF4L5J1gHOIPMQHbh_pxqM6WJZccPDR5) for each object.
++ Occlusion LineMOD: Download the Occlusion LineMOD from [Google Drive](https://drive.google.com/file/d/1PItmDj7Go0OBnC1Lkvagz3RRB9qdJUIG/view?usp=sharing) or [Tencent Weiyun](https://share.weiyun.com/50i7KTb). Unzip it and link the unzipped `OcclusionChallengeICCV2015` to `datasets/linemod/Occusion_Linemod`:
+    ```shell
+    ln -s path_to_unzipped_Occlusion_Linemod dataset/linemod/Occlusion_Linemod
+    ```
++ Truncation LineMOD: Download our regenerated Truncation LineMOD dataset from [Google Drive](https://drive.google.com/drive/folders/1JNW5yod33l60p05USFugABmYDTX2zYIB).
++ BOP LineMOD: Download the BOP-version LineMOD dataset from [here](https://bop.felk.cvut.cz/datasets/) mainly including lm_train_pbr.zip, lm_models.zip and lmo_test_all.zip. Unzip them and link to `datasets/lmo/`:
+    ```shell
+    ln -s path_to_unzipped_train_pbr dataset/lmo/train_pbr
+    ln -s path_to_unzipped_models dataset/lmo/models_eval
+    ln -s path_to_unzipped_lmo_test dataset/lmo/test
+    ```
+    Download [symmetries](https://drive.google.com/drive/folders/1BypPQWIz_LXSHizhefQNbK_D1af9NkQV) and generate sym_cor labels with [label_sym.py](https://drive.google.com/drive/folders/1xF4L5J1gHOIPMQHbh_pxqM6WJZccPDR5) for all training and testing images.
+## Training and evaluating
+### Training on the LineMOD dataset
++ Train the model for the target object. You should change variable **cls** to **\'ape\'** in script *train_lm.sh* and execute it in command line:
+    ```shell
+    bash train_lm.sh
+    ```
+### Evaluating on the Occlusion and Truncation LineMOD datasets
++ Before starting evaluation on certain object, you should change **cls** and **tst_mdl** in script *test_lm.sh* and execute it in command line:
+    ```shell
+    bash test_lm.sh
+    ```
+    The varible **tst_mdl** should be a path of pretrained model, which is stored in `train_log/linemod/checkpoints/{cls}`.
++ **Pretrained model**: We provide our pre-trained models for each object on [link](https://drive.google.com/drive/folders/1JNW5yod33l60p05USFugABmYDTX2zYIB).
+### Training on the BOP LineMOD dataset
+Because every training image of BOP LineMOD dataset contains label information of each object instance, we only need train one model for all of the 15 objects. Execute the following command for training:
+    ```shell
+    bash train_boplm.sh
+    ```
+### Evaluating on the BOP LM-O dataset
++ Start evaluating by:
+    ```shell
+    bash test_boplm.sh
+    ```
++ **Pretrained model**: We provide our pre-trained models on [link](https://drive.google.com/drive/folders/1BypPQWIz_LXSHizhefQNbK_D1af9NkQV). 
